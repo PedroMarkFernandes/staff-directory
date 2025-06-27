@@ -1,0 +1,23 @@
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+.card {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin: 15px;
+  border-radius: 6px;
+  width: 200px;
+  display: inline-block;
+  text-align: center;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+img {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
+
