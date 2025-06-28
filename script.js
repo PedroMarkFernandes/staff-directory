@@ -1,32 +1,41 @@
+// Log name input
 document.getElementById("logNameBtn").addEventListener("click", function () {
   let name = document.getElementById("nameInput").value;
-  console.log(" You entered: " + name);
-  document.getElementById("nameInput").value = ""; // Clear the input field after logging
+  console.log("You entered: " + name);
 });
 
-// Function to fetch staff data from randomuser.me
+// Fetch from RandomUser and your Flask backend, then combine them
 function loadStaff() {
-  
-  fetch("https://randomuser.me/api/")     // Fetch a random user from the API
-    .then(response => response.json())    // Convert response to JSON
-    .then(data => {                         
-      let person = data.results[0];             // Get the first result from the API response     
+  // 1. Fetch random user
+  fetch("https://randomuser.me/api/")
+    .then(response => response.json())
+    .then(userData => {
+      let person = userData.results[0];
 
-        // Create a card HTML structure with the person's details
-      document.getElementById("staffContainer").innerHTML += `
-        <div class="card">
-          <img src="${person.picture.medium}" alt="Profile picture" />
-          <h2>${person.name.first} ${person.name.last}</h2>
-          <p>Email: ${person.email}</p>
-          <p>Location: ${person.location.city}</p>
-        </div>
-      `;
-    })
-    .catch(error => {
-      console.error("Error fetching staff data:", error);
-    });
+      // 2. Fetch additional staff info from Flask
+      fetch("http://127.0.0.1:5000/staff")
+        .then(response => response.json())
+        .then(backendData => {
+          
+          // Using the first backend profile
+          let extraInfo = backendData[0];
+          console.log("Backend data:", extraInfo); //testing backend data
+          // Combine both data sources into a card
+          document.getElementById("staffContainer").innerHTML += `
+            <div class="card">
+              <img src="${person.picture.medium}" />
+              <h2>${person.name.first} ${person.name.last}</h2>
+              <p><strong>Email:</strong> ${extraInfo.email}</p>
+              <p><strong>Research Area:</strong> ${extraInfo.research_area}</p>
+              <p><strong>City:</strong> ${person.location.city}</p>
+            </div>
+          `;
+        });
+    console.log("User data:", person); //testing user data
+            
+      });
 }
 
+// Log the user and backend data to console
 
-// Load staff data when the page loads
-loadStaff();
+loadStaff();  // Run when page loads
