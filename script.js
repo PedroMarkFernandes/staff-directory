@@ -1,41 +1,60 @@
-// Log name input
+// Logs name input
 document.getElementById("logNameBtn").addEventListener("click", function () {
   let name = document.getElementById("nameInput").value;
   console.log("You entered: " + name);
 });
+// Clears the input field after logging
+document.getElementById("nameInput").value = "";
 
-// Fetch from RandomUser and your Flask backend, then combine them
-function loadStaff() {
-  // 1. Fetch random user
+
+// Triggers staff reload with a filter when button clicked
+document.getElementById("filterBtn").addEventListener("click", function () {
+  let area = document.getElementById("areaInput").value;
+  loadStaff(area); // Pass filter value to loadStaff()
+});
+
+function loadStaff(area = null) {
+  // Clears previous results
+  document.getElementById("staffContainer").innerHTML = "";
+
+  // Gets random user from external API
   fetch("https://randomuser.me/api/")
     .then(response => response.json())
     .then(userData => {
       let person = userData.results[0];
 
-      // 2. Fetch additional staff info from Flask
-      fetch("http://127.0.0.1:5000/staff")
+      // Builds backend API URL
+      let apiUrl = "http://127.0.0.1:5000/staff";
+      if (area) {
+        apiUrl += "?area=" + encodeURIComponent(area);
+      }
+
+      // Fetches staff info from backend
+      fetch(apiUrl)
         .then(response => response.json())
         .then(backendData => {
-          
-          // Using the first backend profile
-          let extraInfo = backendData[0];
-          console.log("Backend data:", extraInfo); //testing backend data
-          // Combine both data sources into a card
-          document.getElementById("staffContainer").innerHTML += `
-            <div class="card">
-              <img src="${person.picture.medium}" />
-              <h2>${person.name.first} ${person.name.last}</h2>
-              <p><strong>Email:</strong> ${extraInfo.email}</p>
-              <p><strong>Research Area:</strong> ${extraInfo.research_area}</p>
-              <p><strong>City:</strong> ${person.location.city}</p>
-            </div>
-          `;
+          if (backendData.length === 0) {
+            document.getElementById("staffContainer").innerHTML = "<p>No staff found for this area.</p>";
+            return;
+          }
+
+          // Loops through all backend staff
+          backendData.forEach((extraInfo) => {
+            // Creates a card for each staff member
+            document.getElementById("staffContainer").innerHTML += `
+              <div class="card">
+                <img src="${person.picture.medium}" alt="Staff photo" />
+                <h2>Name: ${person.name.first} ${person.name.last}</h2>
+                <p><strong>Email:</strong> ${extraInfo.email}</p>
+                <p><strong>Research Area:</strong> ${extraInfo.research_area}</p>
+              </div>
+            `;
+          });
         });
-    console.log("User data:", person); //testing user data
-            
-      });
+    })
+    .catch(error => console.error("Error fetching data:", error));
 }
 
-// Log the user and backend data to console
+// Logs the user and backend data to console
 
-loadStaff();  // Run when page loads
+loadStaff();  // Runs when page loads
