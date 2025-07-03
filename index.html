@@ -3,21 +3,53 @@
 <head>
   <title>Staff Directory</title>
   <link rel="stylesheet" href="style.css">
+
+  <!-- Bootstrap CSS -->
+  <link 
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
+    rel="stylesheet">
 </head>
-<body>
-  <h1>Staff Directory</h1>
-  
-  <input id="nameInput" type="text" placeholder="Enter name">
-  <button id="logNameBtn">Log Name</button>
+<body class="container mt-5">
 
-    
-  <input id="areaInput" type="text" placeholder="Filter by research area">
-  <button id="filterBtn">Filter Staff</button>
+  <h1 class="mb-4">Staff Directory</h1>
 
-  <hr>
-  <div id="staffContainer"></div>
+  <!-- Search and Filter Row -->
+  <div class="row mb-3">
+    <div class="col-md-4">
+      <input id="nameInput" class="form-control" type="text" placeholder="Enter name">
+    </div>
+    <div class="col-md-2">
+      <button id="logNameBtn" class="btn btn-secondary w-100">Log Name</button>
+    </div>
 
+    <div class="col-md-4">
+      <input id="areaInput" class="form-control" type="text" placeholder="Filter by research area">
+    </div>
+    <div class="col-md-2">
+      <button id="filterBtn" class="btn btn-primary w-100">Filter Staff</button>
+    </div>
+  </div>
 
+  <!-- Staff Cards Section -->
+  <div id="staffContainer" class="row"></div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="staffModal" tabindex="-1" aria-labelledby="staffModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staffModalLabel">Staff Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="modalContent">
+          <!-- Dynamic content -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

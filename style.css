@@ -1,22 +1,49 @@
+/* Overall body styling */
 body {
-  font-family: Arial, sans-serif;
-  padding: 20px;
-}
-
-.card {
-  border: 1px solid #ddd;
-  padding: 15px;
-  margin: 15px;
-  border-radius: 6px;
-  width: 300px;
-  display: inline-block;
-  text-align: center;
   background-color: #f9f9f9;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
 }
 
-img {
-  border-radius: 50%;
-  width: 200px;
-  height: 200px;
+/* Styling for the page title */
+h1 {
+  text-align: center;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Add some padding below input fields */
+input.form-control {
+  margin-bottom: 10px;
+}
+
+/* Card styling */
+.card {
+  transition: transform 0.2s ease-in-out;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+/* Hover effect on card */
+.card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+/* Card image styling */
+.card-img-top {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border: 2px solid #007bff;
+}
+
+/* Modal content padding */
+.modal-body p {
+  margin-bottom: 8px;
+}
+
+/* Button spacing */
+button {
+  margin-top: 5px;
 }

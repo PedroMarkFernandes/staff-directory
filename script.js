@@ -3,33 +3,29 @@ document.getElementById("logNameBtn").addEventListener("click", function () {
   let name = document.getElementById("nameInput").value;
   console.log("You entered: " + name);
 });
-// Clears the input field after logging
-document.getElementById("nameInput").value = "";
 
-
-// Triggers staff reload with a filter when button clicked
+// Filter button
 document.getElementById("filterBtn").addEventListener("click", function () {
   let area = document.getElementById("areaInput").value;
-  loadStaff(area); // Pass filter value to loadStaff()
+  loadStaff(area);
 });
 
+// Main function to load and display staff
 function loadStaff(area = null) {
-  // Clears previous results
   document.getElementById("staffContainer").innerHTML = "";
 
-  // Gets random user from external API
-  fetch("https://randomuser.me/api/")
+  // Get 10 random users
+  fetch("https://randomuser.me/api/?results=10")
     .then(response => response.json())
     .then(userData => {
-      let person = userData.results[0];
+      let people = userData.results;
 
-      // Builds backend API URL
+      // Fetch staff data from backend
       let apiUrl = "http://127.0.0.1:5000/staff";
       if (area) {
         apiUrl += "?area=" + encodeURIComponent(area);
       }
 
-      // Fetches staff info from backend
       fetch(apiUrl)
         .then(response => response.json())
         .then(backendData => {
@@ -38,23 +34,42 @@ function loadStaff(area = null) {
             return;
           }
 
-          // Loops through all backend staff
-          backendData.forEach((extraInfo) => {
-            // Creates a card for each staff member
+          backendData.forEach((staffMember, index) => {
+            let person = people[index % people.length];
+            let cardId = `staffCard${index}`;
+
             document.getElementById("staffContainer").innerHTML += `
-              <div class="card">
-                <img src="${person.picture.medium}" alt="Staff photo" />
-                <h2>Name: ${person.name.first} ${person.name.last}</h2>
-                <p><strong>Email:</strong> ${extraInfo.email}</p>
-                <p><strong>Research Area:</strong> ${extraInfo.research_area}</p>
+              <div class="col-md-4 mb-4">
+                <div class="card h-100 text-center shadow-sm" id="${cardId}" style="cursor: pointer;">
+                  <img src="${person.picture.medium}" class="card-img-top rounded-circle mx-auto mt-3" style="width: 100px; height: 100px;" alt="Staff">
+                  <div class="card-body">
+                    <h5 class="card-title">${person.name.first} ${person.name.last}</h5>
+                    <p class="card-text"><strong>Research Area:</strong> ${staffMember.research_area}</p>
+                  </div>
+                </div>
               </div>
             `;
+
+            // Add click event to card to show modal
+            setTimeout(() => {
+              document.getElementById(cardId).addEventListener("click", () => {
+                document.getElementById("modalContent").innerHTML = `
+                  <img src="${person.picture.medium}" class="card-img-top rounded-circle mx-auto mt-3" style="width: 100px; height: 100px;" alt="Staff">
+                  <p><strong>Name:</strong> ${person.name.title} ${person.name.first} ${person.name.last}</p>
+                  <p><strong>Email:</strong> ${person.email}</p>
+                  <p><strong>Location:</strong> ${person.location.city}, ${person.location.country}</p>
+                  <p><strong>Research Area:</strong> ${staffMember.research_area}</p>
+                  <p><strong>Staff ID:</strong> ${staffMember.id}</p>
+                `;
+                const modal = new bootstrap.Modal(document.getElementById("staffModal"));
+                modal.show();
+              });
+            }, 0);
           });
         });
     })
     .catch(error => console.error("Error fetching data:", error));
 }
 
-// Logs the user and backend data to console
-
-loadStaff();  // Runs when page loads
+// Load everything when the page loads
+loadStaff();
