@@ -21,7 +21,7 @@ function loadStaff(area = null) {
       let people = userData.results;
 
       // Fetch staff data from backend
-      let apiUrl = "http://127.0.0.1:5000/staff";
+      let apiUrl = "https://opulent-space-robot-7qr4q6ww6j9cwp96-8000.app.github.dev/";
       if (area) {
         apiUrl += "?area=" + encodeURIComponent(area);
       }
