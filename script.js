@@ -10,13 +10,27 @@ document.getElementById("filterBtn").addEventListener("click", function () {
   loadStaff(area);
 });
 
+// Function to show user-friendly errors
+function showErrorMessage(message) {
+  document.getElementById("staffContainer").innerHTML = `
+    <div class="alert alert-danger" role="alert">
+      ${message}
+    </div>
+  `;
+}
+
 // Main function to load and display staff
 function loadStaff(area = null) {
   document.getElementById("staffContainer").innerHTML = "";
 
-  // Get 10 random users
+  // Get 10 random users from the external API
   fetch("https://randomuser.me/api/?results=10")
-    .then(response => response.json())
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Failed to fetch random users.");
+      }
+      return response.json();
+    })
     .then(userData => {
       let people = userData.results;
 
@@ -26,8 +40,14 @@ function loadStaff(area = null) {
         apiUrl += "?area=" + encodeURIComponent(area);
       }
 
+      // Fetch data from your backend API
       fetch(apiUrl)
-        .then(response => response.json())
+        .then(response => {
+          if (!response.ok) {
+            throw new Error("Failed to fetch staff data.");
+          }
+          return response.json();
+        })
         .then(backendData => {
           if (backendData.length === 0) {
             document.getElementById("staffContainer").innerHTML = "<p>No staff found for this area.</p>";
@@ -66,9 +86,16 @@ function loadStaff(area = null) {
               });
             }, 0);
           });
+        })
+        .catch(error => {
+          console.error("Backend API error:", error);
+          showErrorMessage("Something went wrong fetching staff data. Please try again later.");
         });
     })
-    .catch(error => console.error("Error fetching data:", error));
+    .catch(error => {
+      console.error("Random User API error:", error);
+      showErrorMessage("Something went wrong fetching user profiles. Please refresh and try again.");
+    });
 }
 
 // Load everything when the page loads
