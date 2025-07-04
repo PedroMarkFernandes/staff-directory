@@ -4,6 +4,22 @@ document.getElementById("filterBtn").addEventListener("click", function () {
   loadStaff(area);
 });
 
+
+function createStaffCard(person, staffMember, cardId) {
+  return `
+    <div class="col-md-4 mb-4">
+      <div class="card animate__animated animate__zoomIn h-100 text-center shadow-sm" id="${cardId}" style="cursor: pointer;">
+        <img src="${person.picture.medium}" class="card-img-top rounded-circle mx-auto mt-3" style="width: 100px; height: 100px;" alt="Staff">
+        <div class="card-body">
+          <h5 class="card-title">${person.name.first} ${person.name.last}</h5>
+          <p class="card-text"><strong>Research Area:</strong> ${staffMember.research_area}</p>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+
 // Function to show user-friendly errors
 function showErrorMessage(message) {
   document.getElementById("staffContainer").innerHTML = `
@@ -52,17 +68,8 @@ function loadStaff(area = null) {
             let person = people[index % people.length];
             let cardId = `staffCard${index}`;
 
-            document.getElementById("staffContainer").innerHTML += `
-              <div class="col-md-4 mb-4">
-                <div class="card h-100 text-center shadow-sm" id="${cardId}" style="cursor: pointer;">
-                  <img src="${person.picture.medium}" class="card-img-top rounded-circle mx-auto mt-3" style="width: 100px; height: 100px;" alt="Staff">
-                  <div class="card-body">
-                    <h5 class="card-title">${person.name.first} ${person.name.last}</h5>
-                    <p class="card-text"><strong>Research Area:</strong> ${staffMember.research_area}</p>
-                  </div>
-                </div>
-              </div>
-            `;
+            const cardHTML = createStaffCard(person, staffMember, cardId);
+            document.getElementById("staffContainer").innerHTML += cardHTML
 
             // Add click event to card to show modal
             setTimeout(() => {
