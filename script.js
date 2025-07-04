@@ -1,9 +1,3 @@
-// Logs name input
-document.getElementById("logNameBtn").addEventListener("click", function () {
-  let name = document.getElementById("nameInput").value;
-  console.log("You entered: " + name);
-});
-
 // Filter button
 document.getElementById("filterBtn").addEventListener("click", function () {
   let area = document.getElementById("areaInput").value;
