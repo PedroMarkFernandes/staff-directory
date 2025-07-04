@@ -68,7 +68,7 @@ function loadStaff(area = null) {
             setTimeout(() => {
               document.getElementById(cardId).addEventListener("click", () => {
                 document.getElementById("modalContent").innerHTML = `
-                  <img src="${person.picture.medium}" class="card-img-top rounded-circle mx-auto mt-3" style="width: 100px; height: 100px;" alt="Staff">
+                  <img src="${person.picture.medium}" class="rounded-circle d-block mx-auto mb-3 mt-2" style="width: 150px; height: 150px;" alt="Staff">
                   <p><i class="fas fa-user"></i> <strong>Name:</strong> ${person.name.title} ${person.name.first} ${person.name.last}</p>
                   <p><i class="fas fa-envelope"></i> <strong>Email:</strong> ${person.email}</p>
                   <p><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> ${person.location.city}, ${person.location.country}</p>
