@@ -27,7 +27,7 @@ In Github Codespaces,
 1. Install dependencies:
 pip install -r backend/requirements.txt 
 
-2. Switch to Backend folder which contains the Flask API
+2. Switch to Backend folder which contains the Flask API: 
 cd backend
 
 3. Run Flask server:
