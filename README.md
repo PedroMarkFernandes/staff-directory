@@ -38,13 +38,8 @@ IMPORTANT: Make sure port 8000 is public
 When the Flask server starts, set the 8000 port to Public in the Codespaces Port Tab. 
 If the port is Private, the frontend will not be able to fetch data from the Backend API
 
----
-
-## 🚀 Live Demo
-
-- 🌐 Frontend (GitHub Pages): [View App](https://pedromarkfernandes.github.io/staff-directory/)
-- 🔧 Backend API (Codespaces): Run in Codespaces and set **Port 8000** to **Public**
-
+4. View working frontend now 
+🌐 Frontend (GitHub Pages): [View App](https://pedromarkfernandes.github.io/staff-directory/)
 ---
 
 ## 🚀 Features
