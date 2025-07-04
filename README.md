@@ -73,6 +73,7 @@ Example: GET http://localhost:5000/staff/3
 ---
 
 ## 🗂 Project Structure
+```
 staff-directory/
 ├── index.html  # Frontend UI
 ├── script.js   # Frontend JavaScript
@@ -82,5 +83,5 @@ staff-directory/
 ├── backend/
 │   ├── app.py  # Flask backend API
 │   └── requirements.txt   # Backend dependencies
-
+```
 ---
