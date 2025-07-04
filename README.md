@@ -2,7 +2,7 @@
 
 ## 📝 Overview
 
-A Staff Directory web app that fetches staff research areas from a custom Flask API and combines them with random profile details from the [Random User API](https://randomuser.me/).  
+This project is a responsive web application that displays a directory of staff members by combining data from a custom Python Flask API and the [randomuser.me](https://randomuser.me) external API. The UI is built with Bootstrap and enhanced with FontAwesome for icons.
 
 
 ![Screenshot of Staff Directory](screenshot.png)
@@ -35,19 +35,23 @@ flask run --host=0.0.0.0 --port=8000
 
 IMPORTANT: Make sure port 8000 is public
 
-When the Flask server starts, set the 8000 port to Public in the Codespaces Port Tab. 
+When the Flask server starts, ensure that the 8000 port is set to Public in the Codespaces Port Tab. 
 If the port is Private, the frontend will not be able to fetch data from the Backend API
 
-4. View working frontend now 
+4. View working frontend
 🌐 Frontend (GitHub Pages): [View App](https://pedromarkfernandes.github.io/staff-directory/)
 ---
 
 ## 🚀 Features
 
-- 🔍 Filter staff by research area (case-insensitive)
-- 🧑 View detailed staff info in a Bootstrap modal
-- 🎨 Random user images + real API integration
-- 📱 Fully responsive and clean UI
+- Responsive layout using Bootstrap grid and card components
+- Reusable UI card component using modular JavaScript
+- Combined fetch from both external (randomuser.me) and internal (Flask) API
+- Filter staff by research area
+- Error handling with Bootstrap alerts
+- Modal view for detailed staff information
+- FontAwesome icons for a polished interface
+- Hosted via GitHub Pages (frontend) and Flask API (Codespaces-ready)
 
 ---
 
@@ -81,5 +85,7 @@ staff-directory/
 ├── backend/
 │   ├── app.py  # Flask backend API
 │   └── requirements.txt   # Backend dependencies
+├── .devcontainer/
+│   ├── devcontainer.json  # Codespaces port auto-forwarding setup
 ```
 ---
