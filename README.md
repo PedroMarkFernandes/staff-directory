@@ -18,13 +18,6 @@ A Staff Directory web app that fetches staff research areas from a custom Flask 
 
 ---
 
-## 🚀 Live Demo
-
-- 🌐 Frontend (GitHub Pages): [View App](https://pedromarkfernandes.github.io/staff-directory/)
-- 🔧 Backend API (Codespaces): Run in Codespaces and set **Port 8000** to **Public**
-
----
-
 ## 🧠 How to Run in Codespaces
 
 > This app uses a Flask backend and GitHub Pages for the frontend. The frontend is already hosted, but to run the backend locally in Codespaces:
@@ -44,6 +37,13 @@ IMPORTANT: Make sure port 8000 is public
 
 When the Flask server starts, set the 8000 port to Public in the Codespaces Port Tab. 
 If the port is Private, the frontend will not be able to fetch data from the Backend API
+
+---
+
+## 🚀 Live Demo
+
+- 🌐 Frontend (GitHub Pages): [View App](https://pedromarkfernandes.github.io/staff-directory/)
+- 🔧 Backend API (Codespaces): Run in Codespaces and set **Port 8000** to **Public**
 
 ---
 
