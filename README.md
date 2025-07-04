@@ -29,12 +29,15 @@ A Staff Directory web app that fetches staff research areas from a custom Flask 
 
 > This app uses a Flask backend and GitHub Pages for the frontend. The frontend is already hosted, but to run the backend locally in Codespaces:
 
-### 1. Set up backend
+In Github Codespaces, 
 
 1. Install dependencies:
 pip install -r backend/requirements.txt 
 
-2. Run Flask server:
+2. Switch to Backend folder which contains the Flask API
+cd backend
+
+3. Run Flask server:
 flask run --host=0.0.0.0 --port=8000
 
 IMPORTANT: Make sure port 8000 is public
