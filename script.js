@@ -69,11 +69,11 @@ function loadStaff(area = null) {
               document.getElementById(cardId).addEventListener("click", () => {
                 document.getElementById("modalContent").innerHTML = `
                   <img src="${person.picture.medium}" class="card-img-top rounded-circle mx-auto mt-3" style="width: 100px; height: 100px;" alt="Staff">
-                  <p><strong>Name:</strong> ${person.name.title} ${person.name.first} ${person.name.last}</p>
-                  <p><strong>Email:</strong> ${person.email}</p>
-                  <p><strong>Location:</strong> ${person.location.city}, ${person.location.country}</p>
-                  <p><strong>Research Area:</strong> ${staffMember.research_area}</p>
-                  <p><strong>Staff ID:</strong> ${staffMember.id}</p>
+                  <p><i class="fas fa-user"></i> <strong>Name:</strong> ${person.name.title} ${person.name.first} ${person.name.last}</p>
+                  <p><i class="fas fa-envelope"></i> <strong>Email:</strong> ${person.email}</p>
+                  <p><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> ${person.location.city}, ${person.location.country}</p>
+                  <p><i class="fas fa-flask"></i> <strong>Research Area:</strong> ${staffMember.research_area}</p>
+                  <p><i class="fas fa-id-badge"></i> <strong>Staff ID:</strong> ${staffMember.id}</p>
                 `;
                 const modal = new bootstrap.Modal(document.getElementById("staffModal"));
                 modal.show();
