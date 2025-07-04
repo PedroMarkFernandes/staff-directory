@@ -1,0 +1,10 @@
+{
+  "name": "Staff Directory Dev Container",
+  "forwardPorts": [8000],
+  "portsAttributes": {
+    "8000": {
+      "label": "Flask API",
+      "onAutoForward": "openPreview"
+    }
+  }
+}
